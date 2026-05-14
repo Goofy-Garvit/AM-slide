@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHM113M — AM Slides Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c0c;
+    --surface: #111111;
+    --card: #181818;
+    --border: #262626;
+    --accent: #e8743a;
+    --accent2: #d4c97a;
+    --accent3: #6ecfb0;
+    --text: #e2e0d8;
+    --muted: #6b6860;
+    --tbbt-yellow: #d4c97a;
+    --tbbt-red: #d95f5f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: #0c0c0c;
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(232,116,58,0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, rgba(110,207,176,0.05) 0%, transparent 55%);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(232,116,58,0.1);
+    border: 1px solid rgba(232,116,58,0.35);
+    color: #e8a07a;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  .nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'IBM Plex Mono', monospace;
+    text-decoration: none;
+  }
+
+  .nav-pill:hover, .nav-pill.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .section-num.lecture4 { background: var(--accent3); color: var(--bg); }
+
+  .section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent2);
+    margin-bottom: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .card p, .card li {
+    font-size: 0.9rem;
+    color: #c8c5e8;
+    line-height: 1.7;
+  }
+
+  .card ul { padding-left: 1.2rem; }
+  .card li { margin-bottom: 0.3rem; }
+
+  .formula-box {
+    background: rgba(232,116,58,0.06);
+    border: 1px solid rgba(232,116,58,0.25);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 0.75rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: #e8c9a0;
+  }
+
+  .formula-box strong { color: var(--accent); }
+
+  .table-wrap { overflow-x: auto; margin: 0.75rem 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  th {
+    background: rgba(232,116,58,0.1);
+    color: var(--accent);
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #c8c5e8;
+    vertical-align: middle;
+  }
+
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .highlight-row td { color: var(--accent3); }
+
+  /* TBBT Quote Card */
+  .tbbt-card {
+    background: linear-gradient(135deg, rgba(247,200,106,0.06) 0%, rgba(247,200,106,0.02) 100%);
+    border: 1px solid rgba(247,200,106,0.25);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .tbbt-img-wrap {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(247,200,106,0.3);
+    background: rgba(247,200,106,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .tbbt-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+
+  .tbbt-img-wrap img.loaded { display: block; }
+  .tbbt-img-wrap .placeholder { display: block; }
+  .tbbt-img-wrap img.loaded + .placeholder { display: none; }
+
+  .tbbt-content {}
+
+  .tbbt-speaker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--tbbt-yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+  }
+
+  .tbbt-quote {
+    font-size: 0.88rem;
+    color: #e8dfa8;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .tbbt-quote .bazinga {
+    color: var(--tbbt-yellow);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin: 0.15rem;
+  }
+
+  .tag-green { background: rgba(106,247,200,0.1); color: var(--accent3); border: 1px solid rgba(106,247,200,0.25); }
+  .tag-red { background: rgba(224,82,82,0.1); color: #f48; border: 1px solid rgba(224,82,82,0.25); }
+  .tag-purple { background: rgba(124,106,247,0.1); color: #e8a07a; border: 1px solid rgba(124,106,247,0.25); }
+  .tag-yellow { background: rgba(247,200,106,0.1); color: var(--tbbt-yellow); border: 1px solid rgba(247,200,106,0.25); }
+
+  .lecture-divider {
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
+    margin: 1rem 0 2rem;
+  }
+
+  .lecture-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .lecture-divider span {
+    background: var(--bg);
+    padding: 0 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent3);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+  }
+
+  .summary-table th { font-size: 0.75rem; }
+  .summary-table td { font-size: 0.78rem; }
+
+  .jt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .orbital-energy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .orbital-level {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .orbital-bar {
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">CHM113M · General Chemistry (Inorganic)</div>
+  <h1>CHM AM Slides<br><span>Crystal Field Theory</span></h1>
+  <p>CFSE · Jahn-Teller · Spinels · Magnetism · Colors<br>
+  Garvit Choudhary</p>
+</div>
+
+<nav class="nav-pills">
+  <a href="#lec2-cft" class="nav-pill active">CFT</a>
+  <a href="#cfse" class="nav-pill">CFSE</a>
+  <a href="#oh-vs-td" class="nav-pill">Oh vs Td</a>
+  <a href="#square-planar" class="nav-pill">Square Planar</a>
+  <a href="#jahn-teller" class="nav-pill">Jahn-Teller</a>
+  <a href="#spinels" class="nav-pill">Spinels</a>
+  <a href="#magnetism" class="nav-pill">Magnetism</a>
+  <a href="#mu-eff" class="nav-pill">µ_eff</a>
+  <a href="#ferro" class="nav-pill">Ferro/Antiferro</a>
+  <a href="#colors" class="nav-pill">Colors</a>
+  <a href="#selection" class="nav-pill">Selection Rules</a>
+  <a href="#beer" class="nav-pill">Beer-Lambert</a>
+
+</nav>
+
+<main>
+
+<main>
+
+<!-- ═══ LECTURE 2 CFT SECTION ═══ -->
+<section class="section" id="lec2-cft">
+  <div class="section-header">
+    <span class="section-num">Topic 1</span>
+    <h2>Crystal Field Theory — Foundations</h2>
+  </div>
+
+  <!-- Failures of Werner's Theory -->
+  <div class="card">
+    <h3>Failures of Werner's Theory</h3>
+    <p>Werner's theory was groundbreaking but left several questions unanswered:</p>
+    <ul style="margin-top:0.5rem">
+      <li>Could not explain why complexes adopt different geometries (octahedral, square planar, tetrahedral, etc.)</li>
+      <li>Could not explain the <strong style="color:var(--accent2)">color</strong> and <strong style="color:var(--accent2)">magnetic properties</strong> of complexes</li>
+      <li>Did not explain why some complexes are more stable than others</li>
+      <li>Did not describe the nature of the metal–ligand bond</li>
+    </ul>
+  </div>
+
+  <!-- VBT -->
+  <div class="card">
+    <h3>Valence Bond Theory (VBT) — Pauling</h3>
+    <p style="margin-bottom:0.75rem">Linus Pauling proposed VBT to explain structure, hybridization, and high/low spin complexes.</p>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.4rem">Key Postulates</p>
+        <ul style="font-size:0.83rem">
+          <li>Metal center must have vacant s, p, d, f orbitals</li>
+          <li>These hybridize to form degenerate orbitals for ligand donation</li>
+          <li>Ligands donate ≥2 electrons (coordinate covalent bond)</li>
+          <li>Strong-field (SF) ligands force spin pairing; weak-field (WF) ligands do not</li>
+          <li><strong style="color:var(--accent3)">(n−1)d involved</strong> → inner orbital / low-spin complex</li>
+          <li><strong style="color:var(--tbbt-red)">nd involved</strong> → outer orbital / high-spin complex</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.4rem">Hybridization → Geometry</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Hybridization</th><th>Geometry</th><th>CN</th></tr></thead>
+            <tbody>
+              <tr><td>sp³d²</td><td>Octahedral (outer)</td><td>6</td></tr>
+              <tr><td>d²sp³</td><td>Octahedral (inner)</td><td>6</td></tr>
+              <tr><td>sp³</td><td>Tetrahedral</td><td>4</td></tr>
+              <tr><td>dsp²</td><td>Square Planar</td><td>4</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="formula-box" style="margin-top:0.75rem">
+      <strong>VBT Examples:</strong><br>
+      [Co(H₂O)₆]²⁺ → sp³d² (outer orbital, high-spin) &nbsp;|&nbsp; [Co(CN)₆]³⁻ → d²sp³ (inner orbital, low-spin)<br>
+      [Ni(Cl)₄]²⁻ → sp³ (tetrahedral, high-spin) &nbsp;|&nbsp; [Ni(CN)₄]²⁻ → dsp² (square planar, low-spin)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:rgba(255,100,100,0.25)">
+    <h3 style="color:var(--tbbt-red)">VBT Failures</h3>
+    <p>VBT could <strong>not</strong> explain: colors of complexes · why some ligands are SF vs WF · optical properties · reaction rates · thermodynamic stability of complexes</p>
+  </div>
+
+  <!-- CFT Intro -->
+  <div class="card" style="border-color:rgba(110,207,176,0.3)">
+    <h3>Crystal Field Theory (CFT) — Bethe &amp; van Vleck (1930)</h3>
+    <p style="margin-bottom:0.75rem">CFT treats the metal–ligand interaction as <strong style="color:var(--accent2)">purely electrostatic</strong>. It was originally developed for crystalline ionic solids, then applied to coordination complexes.</p>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.4rem">Key Assumptions</p>
+        <ul style="font-size:0.83rem">
+          <li>Only metal d-orbitals participate — <strong>no orbital overlap</strong></li>
+          <li>Interaction is purely ionic/electrostatic</li>
+          <li>Anionic ligands → point charges; neutral ligands → dipoles</li>
+          <li>d-orbitals of a free metal ion are degenerate</li>
+          <li>Complex stability arises from electrostatic attraction (lowers overall energy)</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.4rem">d-Orbital Shapes (assumed)</p>
+        <ul style="font-size:0.83rem">
+          <li><strong>d<sub>x²−y²</sub>, d<sub>z²</sub></strong> — lobes along axes (e<sub>g</sub> set)</li>
+          <li><strong>d<sub>xy</sub>, d<sub>xz</sub>, d<sub>yz</sub></strong> — lobes between axes (t<sub>2g</sub> set)</li>
+          <li>d<sub>z²</sub> is unique: axially symmetric from Y₂⁰(θ,φ) ∝ (3cos²θ − 1); has dumbbell + torus shape</li>
+        </ul>
+        <div class="formula-box" style="font-size:0.78rem;margin-top:0.5rem">
+          d<sub>z²</sub> full name: d<sub>2z²−x²−y²</sub>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Octahedral Splitting -->
+  <div class="card">
+    <h3>Crystal Field Splitting — Octahedral Field (O<sub>h</sub>)</h3>
+    <p style="margin-bottom:0.75rem">In an octahedral ligand field, 6 ligands approach along ±x, ±y, ±z axes. d-orbitals split into two sets:</p>
+    <div class="grid-2">
+      <div>
+        <ul style="font-size:0.83rem;margin-bottom:0.75rem">
+          <li>Free metal in vacuum → all 5 d-orbitals degenerate</li>
+          <li>Spherical electrostatic field → all raised equally in energy</li>
+          <li>Octahedral field breaks degeneracy: orbitals along axes (d<sub>x²−y²</sub>, d<sub>z²</sub>) face ligands directly → <strong style="color:#f48">raised</strong></li>
+          <li>Orbitals between axes (d<sub>xy</sub>, d<sub>xz</sub>, d<sub>yz</sub>) → <strong style="color:var(--accent3)">lowered</strong></li>
+          <li>O<sub>h</sub> is centrosymmetric → labels carry "g" subscript</li>
+        </ul>
+      </div>
+      <div>
+        <!-- SVG: Oh splitting diagram -->
+        <svg viewBox="0 0 260 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;background:rgba(124,106,247,0.04);border:1px solid var(--border)">
+          <!-- baricentre line -->
+          <line x1="100" y1="80" x2="240" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,3"/>
+          <!-- spherical EF level -->
+          <rect x="100" y="75" width="40" height="10" rx="3" fill="rgba(200,200,200,0.15)" stroke="rgba(200,200,200,0.3)" stroke-width="1"/>
+          <text x="80" y="83" text-anchor="end" font-family="monospace" font-size="8" fill="rgba(200,200,200,0.6)">sph. EF</text>
+          <!-- eg level -->
+          <rect x="195" y="38" width="48" height="10" rx="3" fill="rgba(224,82,82,0.25)" stroke="rgba(224,82,82,0.5)" stroke-width="1.5"/>
+          <text x="247" y="46" font-family="monospace" font-size="9" fill="#f48"> eᵍ</text>
+          <text x="247" y="56" font-family="monospace" font-size="7" fill="rgba(255,100,100,0.7)">+3/5 Δₒ</text>
+          <!-- t2g level -->
+          <rect x="195" y="112" width="48" height="10" rx="3" fill="rgba(106,247,200,0.2)" stroke="rgba(106,247,200,0.45)" stroke-width="1.5"/>
+          <text x="247" y="120" font-family="monospace" font-size="9" fill="#6af7c8"> t₂ᵍ</text>
+          <text x="247" y="130" font-family="monospace" font-size="7" fill="rgba(106,247,200,0.7)">−2/5 Δₒ</text>
+          <!-- Δo brace -->
+          <line x1="187" y1="43" x2="187" y2="117" stroke="var(--accent)" stroke-width="1.5"/>
+          <line x1="183" y1="43" x2="191" y2="43" stroke="var(--accent)" stroke-width="1.5"/>
+          <line x1="183" y1="117" x2="191" y2="117" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="177" y="85" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--accent)" transform="rotate(-90 177 85)">Δₒ</text>
+          <!-- dashed lines from spherical to split -->
+          <line x1="140" y1="80" x2="195" y2="43" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,2"/>
+          <line x1="140" y1="80" x2="195" y2="117" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="50" y="20" font-family="monospace" font-size="9" fill="var(--accent2)">Oh d-orbital splitting</text>
+        </svg>
+      </div>
+    </div>
+    <div class="formula-box">
+      <strong>t₂g</strong> (d<sub>xy</sub>, d<sub>xz</sub>, d<sub>yz</sub>): −2/5 Δₒ each &nbsp;·&nbsp; <strong>eᵍ</strong> (d<sub>x²−y²</sub>, d<sub>z²</sub>): +3/5 Δₒ each<br>
+      Net energy change = 0 (baricentre rule preserved)
+    </div>
+  </div>
+
+  <!-- Tetrahedral Splitting -->
+  <div class="card">
+    <h3>Crystal Field Splitting — Tetrahedral Field (T<sub>d</sub>)</h3>
+    <p style="margin-bottom:0.75rem">In a tetrahedral field, 4 ligands approach along cube body diagonals — <em>none</em> point directly at any d-orbital. The splitting is <strong>inverted</strong> vs octahedral and <strong>smaller</strong>:</p>
+    <div class="grid-2">
+      <div>
+        <ul style="font-size:0.83rem">
+          <li>d<sub>xy</sub>, d<sub>xz</sub>, d<sub>yz</sub> (t₂ set) → closer to ligand approach → <strong style="color:#f48">raised</strong></li>
+          <li>d<sub>z²</sub>, d<sub>x²−y²</sub> (e set) → further from ligands → <strong style="color:var(--accent3)">lowered</strong></li>
+          <li>T<sub>d</sub> is NOT centrosymmetric → no "g" subscript on labels</li>
+        </ul>
+        <div class="formula-box" style="margin-top:0.6rem">
+          <strong>t₂</strong>: +2/5 Δt &nbsp;·&nbsp; <strong>e</strong>: −3/5 Δt<br>
+          <strong style="color:var(--accent)">Δt ≈ 4/9 Δo</strong> (same metal, same ligand)
+        </div>
+      </div>
+      <div>
+        <!-- SVG: Td splitting diagram -->
+        <svg viewBox="0 0 260 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;background:rgba(124,106,247,0.04);border:1px solid var(--border)">
+          <line x1="100" y1="80" x2="240" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,3"/>
+          <rect x="100" y="75" width="40" height="10" rx="3" fill="rgba(200,200,200,0.15)" stroke="rgba(200,200,200,0.3)" stroke-width="1"/>
+          <text x="80" y="83" text-anchor="end" font-family="monospace" font-size="8" fill="rgba(200,200,200,0.6)">sph. EF</text>
+          <!-- t2 raised -->
+          <rect x="195" y="38" width="48" height="10" rx="3" fill="rgba(224,82,82,0.25)" stroke="rgba(224,82,82,0.5)" stroke-width="1.5"/>
+          <text x="247" y="46" font-family="monospace" font-size="9" fill="#f48"> t₂</text>
+          <text x="247" y="56" font-family="monospace" font-size="7" fill="rgba(255,100,100,0.7)">+2/5 Δt</text>
+          <!-- e lowered -->
+          <rect x="195" y="112" width="48" height="10" rx="3" fill="rgba(106,247,200,0.2)" stroke="rgba(106,247,200,0.45)" stroke-width="1.5"/>
+          <text x="247" y="120" font-family="monospace" font-size="9" fill="#6af7c8"> e</text>
+          <text x="247" y="130" font-family="monospace" font-size="7" fill="rgba(106,247,200,0.7)">−3/5 Δt</text>
+          <!-- Δt brace -->
+          <line x1="187" y1="43" x2="187" y2="117" stroke="var(--accent2)" stroke-width="1.5"/>
+          <line x1="183" y1="43" x2="191" y2="43" stroke="var(--accent2)" stroke-width="1.5"/>
+          <line x1="183" y1="117" x2="191" y2="117" stroke="var(--accent2)" stroke-width="1.5"/>
+          <text x="177" y="85" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--accent2)" transform="rotate(-90 177 85)">Δt</text>
+          <line x1="140" y1="80" x2="195" y2="43" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,2"/>
+          <line x1="140" y1="80" x2="195" y2="117" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="50" y="20" font-family="monospace" font-size="9" fill="var(--accent2)">Td d-orbital splitting</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Measuring Delta -->
+  <div class="card">
+    <h3>Measuring Δ — UV-Visible Spectroscopy</h3>
+    <p style="margin-bottom:0.6rem">Electronic transitions between split d-orbitals absorb visible light. From the absorption peak wavelength λ<sub>max</sub>:</p>
+    <div class="formula-box">
+      <strong>E = hc/λ</strong> &nbsp;→&nbsp; Δ (in cm⁻¹) = 1/λ(cm)<br><br>
+      Example: [Ti<sup>III</sup>(H₂O)₆]³⁺ — λ<sub>max</sub> = 493 nm → <strong>Δₒ = 20,300 cm⁻¹ = 243 kJ/mol</strong><br>
+      Ground state: t₂g¹ eᵍ⁰ &nbsp;→ hν →&nbsp; Excited state: t₂g⁰ eᵍ¹
+    </div>
+  </div>
+
+  <!-- Factors Affecting Delta -->
+  <div class="card">
+    <h3>Factors Affecting Δ</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Factor</th><th>Effect on Δ</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Oxidation state</strong></td>
+            <td>Higher charge → pulls ligands closer → larger repulsion → <span style="color:var(--accent3)">↑ Δ</span></td>
+            <td>[Co<sup>II</sup>(NH₃)₆]²⁺: 10,200 cm⁻¹ vs [Co<sup>III</sup>(NH₃)₆]³⁺: 22,870 cm⁻¹</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Geometry / CN</strong></td>
+            <td>Oh &gt; Td for same metal/ligand (Δt ≈ 4/9 Δo)</td>
+            <td>[Co<sup>II</sup>(NH₃)₆]²⁺: 10,200 vs [Co<sup>II</sup>(NH₃)₄]²⁺: 5,900 cm⁻¹</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>Row of metal (Z*)</strong></td>
+            <td>4d, 5d metals have larger Z* and more diffuse d-orbitals → <span style="color:var(--accent3)">↑ Δ</span> down group</td>
+            <td>[Co<sup>III</sup>(NH₃)₆]³⁺: 22,870 · [Rh<sup>III</sup>]: 34,100 · [Ir<sup>III</sup>]: 41,200 cm⁻¹</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>Ligand field strength</strong></td>
+            <td>Stronger σ/π donor or π-acceptor character → higher Δ</td>
+            <td>CN⁻, CO (strong) ≫ H₂O ≫ I⁻ (weak)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula-box" style="margin-top:0.75rem">
+      <strong>Z* trend (Slater's rules):</strong> d/f electrons shield poorly; relativistic contraction of s/p orbitals in heavy atoms raises Z* further → 4d and 5d complexes are almost always low-spin.
+    </div>
+  </div>
+
+  <!-- Spectrochemical Series -->
+  <div class="card">
+    <h3>Spectrochemical Series &amp; Limitations of CFT</h3>
+    <p style="margin-bottom:0.6rem">Ligands ranked by ability to split d-orbitals (weak → strong field):</p>
+    <div class="formula-box" style="font-size:0.78rem;line-height:2">
+      I⁻ &lt; Br⁻ &lt; SCN⁻ &lt; Cl⁻ &lt; S²⁻ &lt; N₃⁻ &lt; F⁻ &lt; OH⁻ &lt; H₂O &lt; NCS⁻ &lt; NH₃ &lt; en &lt; bpy~phen &lt; NO₂⁻ &lt; PR₃ &lt; CN⁻ ~ CO<br>
+      <span style="color:var(--tbbt-red)">◄ Weak field (π-donor)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:var(--accent3)">Strong field (π-acceptor) ►</span>
+    </div>
+    <div class="grid-2" style="margin-top:0.75rem">
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.3rem">CFT contradiction: halide ordering</p>
+        <p style="font-size:0.82rem">CFT predicts F⁻ (smallest, closest approach) should give the largest Δ. But in reality: I⁻ &lt; Br⁻ &lt; Cl⁻ &lt; F⁻. CFT cannot explain this — orbital interactions (covalency) are needed.</p>
+      </div>
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.3rem">Ligand bonding types</p>
+        <ul style="font-size:0.82rem">
+          <li><strong>σ-only donors:</strong> NH₃, H₂O — middle of series</li>
+          <li><strong>σ + π donors</strong> (filled p → t₂g): Cl⁻, Br⁻, OH⁻ — reduce Δ (weak field)</li>
+          <li><strong>σ donor + π acceptor</strong> (empty π* ← t₂g back-bond): CO, CN⁻, PPh₃ — increase Δ (strong field)</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:0.75rem;font-size:0.82rem;color:var(--muted)">These covalency effects are addressed by <strong style="color:var(--accent2)">Ligand Field Theory (LFT)</strong>, which extends CFT by incorporating orbital overlap and partial covalent character.</p>
+  </div>
+
+  <!-- Pairing Energy & Spin State -->
+  <div class="card">
+    <h3>Pairing Energy (P) and Spin State</h3>
+    <p style="margin-bottom:0.6rem">Whether electrons pair in the lower t₂g orbitals or spread into higher e<sub>g</sub> depends on comparing <strong style="color:var(--accent)">Δ</strong> vs <strong style="color:var(--tbbt-red)">P</strong> (pairing energy). P depends only on the metal, not the ligands.</p>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.3rem">Two components of P = Pₑ + Pᴄ</p>
+        <ul style="font-size:0.82rem">
+          <li><strong>Coulombic repulsion (Pₑ):</strong> two electrons in the same orbital repel — major contribution</li>
+          <li><strong>Exchange energy loss (Pᴄ):</strong> electrons in different orbitals with parallel spins gain exchange stabilization; pairing loses this</li>
+        </ul>
+      </div>
+      <div>
+        <div class="formula-box">
+          <strong>Δ &gt; P</strong> → electrons pair in t₂g → <span style="color:var(--accent3)">low-spin</span><br>
+          <strong>Δ &lt; P</strong> → electrons spread to eᵍ → <span style="color:var(--tbbt-red)">high-spin</span>
+        </div>
+        <p style="font-size:0.82rem;margin-top:0.5rem;color:var(--muted)">Only d⁴–d⁷ configurations can be either high- or low-spin in an Oh field.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spin Crossover -->
+  <div class="card">
+    <h3>Spin Crossover (SCO)</h3>
+    <p style="margin-bottom:0.6rem">When <strong>Δₒ ≈ P</strong>, external stimuli can switch a complex between spin states.</p>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:0.83rem;color:var(--accent2);font-weight:600;margin-bottom:0.3rem">Mechanisms</p>
+        <ul style="font-size:0.82rem">
+          <li><strong>Thermal SCO:</strong> low T → low-spin (lower enthalpy); high T → high-spin (higher entropy, more microstates). Transition at T½</li>
+          <li><strong>Pressure-induced SCO:</strong> high pressure shortens M–L bonds, increases Δ → favours low-spin</li>
+          <li><strong>LIESST</strong> (Light-Induced Excited Spin-State Trapping): light excites complex to a metastable spin state; basis for molecular switches and optical memory</li>
+        </ul>
+      </div>
+      <div>
+        <div class="formula-box" style="font-size:0.8rem">
+          <strong>Example: [Fe(phen)₂(NCS)₂]</strong> (d⁶ Fe²⁺)<br><br>
+          Low T → low-spin: t₂g⁶ (S = 0, diamagnetic)<br>
+          Heat/light → high-spin: t₂g⁴ eᵍ² (S = 2, paramagnetic)<br><br>
+          Accompanied by: bond lengthening (Fe–N) · color change · magnetic change
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Observations -->
+  <div class="card" style="border-color:rgba(110,207,176,0.3)">
+    <h3>Key Observations</h3>
+    <ul>
+      <li>4d and 5d metals generally have <strong style="color:var(--accent3)">larger Δo</strong> than 3d metals → almost always low-spin</li>
+      <li>Tetrahedral Δt ≈ 4/9 Δo → rarely large enough to force pairing → <strong>low-spin Td complexes are uncommon</strong></li>
+      <li>High-spin / low-spin ambiguity exists <strong>only for d⁴–d⁷</strong> octahedral 3d metal complexes</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ═══ SECTION 1: CFSE ═══ -->
+<section class="section" id="cfse">
+  <div class="section-header">
+    <span class="section-num">Topic 2</span>
+    <h2>Crystal Field Stabilization Energy (CFSE)</h2>
+  </div>
+
+  <div class="card">
+    <h3>What is CFSE?</h3>
+    <p>CFSE is the extra stability a transition metal complex gains when its d-orbitals split in a ligand field. It equals the energy difference between the ligand field arrangement and the hypothetical isotropic (unsplit) field.</p>
+    <div class="formula-box">
+      CFSE = ΔE = E<sub>ligand field</sub> − E<sub>isotropic field</sub>
+    </div>
+    <p style="margin-top:0.75rem"><strong style="color:var(--accent2)">Key factors:</strong> Geometry (Oh/Td/SP) · Number of d-electrons · Spin pairing energy (P) · Ligand field strength</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Octahedral (Oh) Rules</h3>
+      <div class="orbital-energy">
+        <div class="orbital-level">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;width:30px;text-align:right;color:var(--muted)">e<sub>g</sub></span>
+          <div class="orbital-bar" style="background:rgba(224,82,82,0.15);border:1px solid rgba(224,82,82,0.3);color:#f48">+3/5 Δ<sub>o</sub> per electron — destabilizing</div>
+        </div>
+        <div class="orbital-level">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;width:30px;text-align:right;color:var(--muted)">t<sub>2g</sub></span>
+          <div class="orbital-bar" style="background:rgba(106,247,200,0.1);border:1px solid rgba(106,247,200,0.25);color:var(--accent3)">−2/5 Δ<sub>o</sub> per electron — stabilizing</div>
+        </div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted)">Add pairing energy P for each forced pair beyond the isotropic baseline.</p>
+    </div>
+    <div class="card">
+      <h3>Worked Example — d⁷ Octahedral</h3>
+      <p style="font-size:0.83rem;margin-bottom:0.5rem"><span class="tag tag-red">High-spin</span> t₂g⁵ eg²</p>
+      <div class="formula-box" style="font-size:0.78rem">CFSE(HS) = 5×(−2/5) + 2×(+3/5) = <strong>−4/5 Δ<sub>o</sub></strong></div>
+      <p style="font-size:0.83rem;margin:0.5rem 0"><span class="tag tag-green">Low-spin</span> t₂g⁶ eg¹</p>
+      <div class="formula-box" style="font-size:0.78rem">CFSE(LS) = 6×(−2/5) + 1×(+3/5) + P = <strong>−9/5 Δ<sub>o</sub> + P</strong></div>
+    </div>
+  </div>
+
+  <!-- TBBT Quote -->
+  <div class="tbbt-card">
+    <div class="tbbt-img-wrap" id="img-sheldon1">
+      <img src="" alt="Sheldon Cooper" id="sheldon1-img">
+      <span class="placeholder">🛋️</span>
+    </div>
+    <div class="tbbt-content">
+      <div class="tbbt-speaker">Sheldon Cooper</div>
+      <div class="tbbt-quote">"The t₂g is like the couch cushion seat — lower energy, everyone wants it. The eₘ is like sitting on Howard's motorcycle — uncomfortable and high energy. <span class="bazinga">Bazinga!</span>"</div>
+    </div>
+  </div>
+
+  <!-- TBBT Illustration: Orbital Energy as Couch vs Motorcycle -->
+  <div style="margin:1rem 0;text-align:center">
+    <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;width:100%;border-radius:10px;background:rgba(124,106,247,0.04);border:1px solid rgba(232,116,58,0.1)">
+      <!-- t2g couch side -->
+      <rect x="20" y="90" width="180" height="14" rx="7" fill="rgba(106,247,200,0.25)" stroke="rgba(106,247,200,0.5)" stroke-width="1"/>
+      <text x="110" y="102" text-anchor="middle" font-family="monospace" font-size="10" fill="#6af7c8">t₂g — LOW ENERGY 😌</text>
+      <!-- couch icon -->
+      <rect x="50" y="50" width="120" height="34" rx="6" fill="rgba(106,247,200,0.12)" stroke="rgba(106,247,200,0.3)" stroke-width="1.5"/>
+      <rect x="44" y="62" width="12" height="22" rx="4" fill="rgba(106,247,200,0.2)" stroke="rgba(106,247,200,0.3)" stroke-width="1"/>
+      <rect x="164" y="62" width="12" height="22" rx="4" fill="rgba(106,247,200,0.2)" stroke="rgba(106,247,200,0.3)" stroke-width="1"/>
+      <text x="110" y="72" text-anchor="middle" font-size="18">🛋️</text>
+      <text x="110" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(106,247,200,0.7)">Sheldon's Spot™</text>
+      <!-- eg motorcycle side -->
+      <rect x="300" y="50" width="180" height="14" rx="7" fill="rgba(224,82,82,0.2)" stroke="rgba(224,82,82,0.4)" stroke-width="1"/>
+      <text x="390" y="62" text-anchor="middle" font-family="monospace" font-size="10" fill="#f48">eᵍ — HIGH ENERGY 😬</text>
+      <text x="390" y="105" text-anchor="middle" font-size="22">🏍️</text>
+      <text x="390" y="130" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(255,100,100,0.7)">Howard's Motorcycle</text>
+      <!-- arrow between -->
+      <line x1="210" y1="90" x2="290" y2="68" stroke="rgba(232,116,58,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="250" y="85" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(124,106,247,0.7)">Δo</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <h3>CFSE Table — Octahedral Complexes</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>dⁿ</th><th>HS Config</th><th>HS CFSE</th><th>LS Config</th><th>LS CFSE</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>d¹</td><td>t₂g¹eg⁰</td><td>−2/5 Δo</td><td>t₂g¹eg⁰</td><td>−2/5 Δo</td></tr>
+          <tr><td>d²</td><td>t₂g²eg⁰</td><td>−4/5 Δo</td><td>t₂g²eg⁰</td><td>−4/5 Δo</td></tr>
+          <tr><td>d³</td><td>t₂g³eg⁰</td><td>−6/5 Δo</td><td>t₂g³eg⁰</td><td>−6/5 Δo</td></tr>
+          <tr><td>d⁴</td><td>t₂g³eg¹</td><td>−3/5 Δo</td><td>t₂g⁴eg⁰</td><td>−8/5 Δo + P</td></tr>
+          <tr><td>d⁵</td><td>t₂g³eg²</td><td>0</td><td>t₂g⁵eg⁰</td><td>−10/5 Δo + 2P</td></tr>
+          <tr><td>d⁶</td><td>t₂g⁴eg²</td><td>−2/5 Δo</td><td>t₂g⁶eg⁰</td><td>−12/5 Δo + 2P</td></tr>
+          <tr><td>d⁷</td><td>t₂g⁵eg²</td><td>−4/5 Δo</td><td>t₂g⁶eg¹</td><td>−9/5 Δo + P</td></tr>
+          <tr><td>d⁸</td><td>t₂g⁶eg²</td><td>−6/5 Δo</td><td>t₂g⁶eg²</td><td>−6/5 Δo</td></tr>
+          <tr><td>d⁹</td><td>t₂g⁶eg³</td><td>−3/5 Δo</td><td>t₂g⁶eg³</td><td>−3/5 Δo</td></tr>
+          <tr><td>d¹⁰</td><td>t₂g⁶eg⁴</td><td>0</td><td>t₂g⁶eg⁴</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>CFSE Table — Tetrahedral Complexes</h3>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.75rem">Td splitting is rarely large enough to force pairing → low-spin Td complexes are uncommon.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>dⁿ</th><th>Td Configuration</th><th>CFSE</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>d¹</td><td>e¹t₂⁰</td><td>−0.6 Δt</td></tr>
+          <tr><td>d²</td><td>e²t₂⁰</td><td>−1.2 Δt</td></tr>
+          <tr><td>d³</td><td>e²t₂¹</td><td>−0.8 Δt</td></tr>
+          <tr><td>d⁴</td><td>e²t₂²</td><td>−0.4 Δt</td></tr>
+          <tr><td>d⁵</td><td>e²t₂³</td><td>0</td></tr>
+          <tr><td>d⁶</td><td>e³t₂³</td><td>−0.6 Δt</td></tr>
+          <tr><td>d⁷</td><td>e⁴t₂³</td><td>−1.2 Δt</td></tr>
+          <tr><td>d⁸</td><td>e⁴t₂⁴</td><td>−0.8 Δt</td></tr>
+          <tr><td>d⁹</td><td>e⁴t₂⁵</td><td>−0.4 Δt</td></tr>
+          <tr><td>d¹⁰</td><td>e⁴t₂⁶</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 2: Oh vs Td ═══ -->
+<section class="section" id="oh-vs-td">
+  <div class="section-header">
+    <span class="section-num">Topic 3</span>
+    <h2>Octahedral vs Tetrahedral Preference</h2>
+  </div>
+  <div class="card">
+    <h3>CFSE Comparison (High-Spin)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>d-count</th><th>CFSE Oh (Δo)</th><th>CFSE Td (Δo)</th><th>Difference</th><th>Oh Preference</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>d⁰, d⁵, d¹⁰</td><td>0</td><td>0</td><td>0</td><td>None</td></tr>
+          <tr><td>d¹, d⁶</td><td>0.4</td><td>0.27</td><td>0.13</td><td>Weak</td></tr>
+          <tr><td>d², d⁷</td><td>0.8</td><td>0.53</td><td>0.27</td><td>Moderate</td></tr>
+          <tr class="highlight-row"><td>d³, d⁸</td><td>1.2</td><td>0.36</td><td>0.84</td><td>Strong ✓✓</td></tr>
+          <tr><td>d⁴, d⁹</td><td>0.6</td><td>0.18</td><td>0.42</td><td>Significant</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:0.75rem;font-size:0.83rem;color:var(--muted)">Order of Oh preference: <span style="color:var(--accent3)">d³, d⁸ > d⁴, d⁹ > d², d⁷ > d¹, d⁶ > d⁰, d⁵, d¹⁰</span></p>
+  </div>
+
+  <!-- Leonard TBBT -->
+  <div class="tbbt-card">
+    <div class="tbbt-img-wrap" id="img-leonard1">
+      <img src="" alt="Leonard Hofstadter" id="leonard1-img">
+      <span class="placeholder">🥽</span>
+    </div>
+    <div class="tbbt-content">
+      <div class="tbbt-speaker">Leonard Hofstadter</div>
+      <div class="tbbt-quote">"Think of it this way: d³ metals in an octahedral field are like Sheldon in his spot — the stabilization is so overwhelming, nothing can move them."</div>
+    </div>
+  </div>
+  <!-- Illustration: Sheldon stuck in his spot -->
+  <div style="margin:1rem 0;text-align:center">
+    <svg viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" style="max-width:420px;width:100%;border-radius:10px;background:rgba(124,106,247,0.04);border:1px solid rgba(232,116,58,0.1)">
+      <text x="210" y="20" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(181,173,255,0.7)">Oh preference: d³, d⁸ >> everything else</text>
+      <!-- bar chart of Oh preference -->
+      <g>
+        <!-- d3/d8 bar -->
+        <rect x="30" y="30" width="40" height="70" rx="4" fill="rgba(106,247,200,0.3)" stroke="rgba(106,247,200,0.6)" stroke-width="1.5"/>
+        <text x="50" y="26" text-anchor="middle" font-family="monospace" font-size="9" fill="#6af7c8">d³,d⁸</text>
+        <text x="50" y="108" text-anchor="middle" font-family="monospace" font-size="8" fill="#6af7c8">★★</text>
+        <!-- d4/d9 bar -->
+        <rect x="90" y="55" width="40" height="45" rx="4" fill="rgba(124,106,247,0.25)" stroke="rgba(124,106,247,0.5)" stroke-width="1.5"/>
+        <text x="110" y="50" text-anchor="middle" font-family="monospace" font-size="9" fill="#b5adff">d⁴,d⁹</text>
+        <!-- d2/d7 bar -->
+        <rect x="150" y="68" width="40" height="32" rx="4" fill="rgba(124,106,247,0.18)" stroke="rgba(124,106,247,0.35)" stroke-width="1"/>
+        <text x="170" y="63" text-anchor="middle" font-family="monospace" font-size="9" fill="#b5adff">d²,d⁷</text>
+        <!-- d1/d6 bar -->
+        <rect x="210" y="77" width="40" height="23" rx="4" fill="rgba(124,106,247,0.12)" stroke="rgba(124,106,247,0.25)" stroke-width="1"/>
+        <text x="230" y="72" text-anchor="middle" font-family="monospace" font-size="9" fill="#b5adff">d¹,d⁶</text>
+        <!-- d0/d5/d10 -->
+        <rect x="270" y="95" width="40" height="5" rx="2" fill="rgba(200,200,200,0.15)" stroke="rgba(200,200,200,0.3)" stroke-width="1"/>
+        <text x="290" y="90" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(136,132,168,0.8)">d⁰,d⁵,d¹⁰</text>
+      </g>
+      <!-- sheldon emoji at d3 bar -->
+      <text x="50" y="58" text-anchor="middle" font-size="14">😤</text>
+      <text x="340" y="65" font-family="monospace" font-size="9" fill="rgba(106,247,200,0.8)">"My spot."</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ SECTION 3: Square Planar ═══ -->
+<section class="section" id="square-planar">
+  <div class="section-header">
+    <span class="section-num">Topic 4</span>
+    <h2>Square Planar Complexes</h2>
+  </div>
+  <div class="card">
+    <h3>d-Orbital Energy Order (low → high)</h3>
+    <div class="orbital-energy">
+      <div class="orbital-level">
+        <div class="orbital-bar" style="background:rgba(224,82,82,0.2);border:1px solid rgba(224,82,82,0.4);color:#f88">dx²−y² (highest)</div>
+      </div>
+      <div class="orbital-level">
+        <div class="orbital-bar" style="background:rgba(247,200,106,0.15);border:1px solid rgba(247,200,106,0.3);color:var(--tbbt-yellow)">dxy</div>
+      </div>
+      <div class="orbital-level">
+        <div class="orbital-bar" style="background:rgba(124,106,247,0.12);border:1px solid rgba(124,106,247,0.25);color:#b5adff">dz²</div>
+      </div>
+      <div class="orbital-level">
+        <div class="orbital-bar" style="background:rgba(106,247,200,0.1);border:1px solid rgba(106,247,200,0.25);color:var(--accent3)">dxz, dyz (lowest)</div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Common SP Complexes</h3>
+      <ul>
+        <li>4d⁸ and 5d⁸ — any ligands<br><span style="color:var(--muted);font-size:0.8rem">e.g. cis-Pt(NH₃)₂Cl₂, [Pd(H₂O)₄]²⁺</span></li>
+        <li style="margin-top:0.5rem">3d⁸, 3d⁹ — strong-field ligands<br><span style="color:var(--muted);font-size:0.8rem">e.g. [Ni(CN)₄]²⁻</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>CFSE Comparison (d⁸)</h3>
+      <div class="formula-box" style="font-size:0.8rem">
+        CFSE<sub>Td</sub> = −0.36 Δo<br>
+        CFSE<sub>Oh</sub> = −1.2 Δo<br>
+        <strong>CFSE<sub>SP</sub> = −2.44 Δo ← wins!</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 4: Jahn-Teller ═══ -->
+<section class="section" id="jahn-teller">
+  <div class="section-header">
+    <span class="section-num">Topic 5</span>
+    <h2>Jahn-Teller Theorem & Distortions</h2>
+  </div>
+  <div class="card">
+    <h3>The Theorem (1937)</h3>
+    <p>A non-linear molecule with a <strong style="color:var(--accent)">degenerate electronic ground state</strong> will distort to remove that degeneracy and lower its energy.</p>
+    <div class="formula-box" style="margin-top:0.75rem">Degeneracy = Instability → distortion removes it → stability gained</div>
+  </div>
+
+  <div class="tbbt-card">
+    <div class="tbbt-img-wrap" id="img-sheldon2">
+      <img src="" alt="Sheldon Cooper Roommate Agreement" id="sheldon2-img">
+      <span class="placeholder">📄</span>
+    </div>
+    <div class="tbbt-content">
+      <div class="tbbt-speaker">Sheldon Cooper</div>
+      <div class="tbbt-quote">"Degeneracy in quantum systems is like having two people equally qualified for the roommate spot — the system must break the tie. I broke mine with a 31-page Roommate Agreement."</div>
+    </div>
+  </div>
+
+  <!-- Jahn-Teller illustration -->
+  <div style="margin:1rem 0;text-align:center">
+    <svg viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;width:100%;border-radius:10px;background:rgba(124,106,247,0.04);border:1px solid rgba(232,116,58,0.1)">
+      <text x="240" y="18" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(181,173,255,0.7)">Jahn-Teller: Degeneracy → Distortion → Stability</text>
+      <!-- Before distortion: degenerate -->
+      <rect x="30" y="40" width="130" height="60" rx="8" fill="rgba(255,100,100,0.05)" stroke="rgba(255,100,100,0.25)" stroke-width="1"/>
+      <text x="95" y="56" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(255,100,100,0.8)">DEGENERATE 😰</text>
+      <line x1="50" y1="75" x2="160" y2="75" stroke="rgba(255,100,100,0.5)" stroke-width="2"/>
+      <text x="95" y="72" text-anchor="middle" font-size="12">⬆️⬆️</text>
+      <text x="95" y="95" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(255,100,100,0.6)">eᵍ equally occupied</text>
+      <!-- arrow -->
+      <text x="195" y="78" text-anchor="middle" font-size="18" fill="rgba(124,106,247,0.8)">→</text>
+      <text x="195" y="92" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(124,106,247,0.6)">distort</text>
+      <!-- After distortion: split -->
+      <rect x="220" y="40" width="130" height="60" rx="8" fill="rgba(106,247,200,0.05)" stroke="rgba(106,247,200,0.25)" stroke-width="1"/>
+      <text x="285" y="56" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(106,247,200,0.8)">SPLIT 😌</text>
+      <line x1="240" y1="65" x2="350" y2="65" stroke="rgba(255,100,100,0.4)" stroke-width="1.5"/>
+      <text x="285" y="62" text-anchor="middle" font-size="10">⬆️</text>
+      <line x1="240" y1="85" x2="350" y2="85" stroke="rgba(106,247,200,0.6)" stroke-width="2"/>
+      <text x="285" y="82" text-anchor="middle" font-size="10">⬆️</text>
+      <text x="285" y="107" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(106,247,200,0.6)">energy lowered ✓</text>
+      <!-- Cu2+ label -->
+      <text x="400" y="72" text-anchor="middle" font-size="20">🟦</text>
+      <text x="400" y="92" text-anchor="middle" font-family="monospace" font-size="9" fill="#b5adff">Cu²⁺ d⁹</text>
+      <text x="400" y="106" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(136,132,168,0.8)">classic JT</text>
+    </svg>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Elongation (Z-out) — most common</h3>
+      <p>Axial ligands move away → dz² drops, dx²−y² rises. Relieves repulsion from four equatorial ligands pointing at dx²−y².</p>
+    </div>
+    <div class="card">
+      <h3>Compression (Z-in) — rare</h3>
+      <p>Axial ligands move closer → dz² rises, dx²−y² drops.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>J-T Distortion by Configuration</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Config</th><th>J-T?</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>d¹ (HS)</td><td><span class="tag tag-yellow">Yes</span></td><td>Compression preferred</td></tr>
+          <tr><td>d² (HS)</td><td><span class="tag tag-yellow">Yes</span></td><td>Elongation preferred</td></tr>
+          <tr><td>d³ (HS)</td><td><span class="tag tag-purple">No</span></td><td>Symmetric t₂g³</td></tr>
+          <tr><td>d⁴ (HS)</td><td><span class="tag tag-yellow">Yes</span></td><td>Elongation most likely</td></tr>
+          <tr><td>d⁵ (HS)</td><td><span class="tag tag-purple">No</span></td><td>Symmetric t₂g³eg²</td></tr>
+          <tr><td>d⁶ (HS)</td><td><span class="tag tag-yellow">Yes</span></td><td>Elongation</td></tr>
+          <tr><td>d⁷ (HS)</td><td><span class="tag tag-yellow">Yes</span></td><td>Elongation</td></tr>
+          <tr><td>d⁸ (HS)</td><td><span class="tag tag-purple">No</span></td><td>None</td></tr>
+          <tr class="highlight-row"><td>d⁹ (HS)</td><td><span class="tag tag-red">Strong</span></td><td>Elongation — classic Cu²⁺</td></tr>
+          <tr><td>d¹⁰</td><td><span class="tag tag-purple">No</span></td><td>None</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula-box" style="margin-top:0.75rem">Classic: [Cu(H₂O)₆]²⁺ — equatorial Cu−O: 2.00 Å | axial Cu−O: 2.45 Å</div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 5: Spinels ═══ -->
+<section class="section" id="spinels">
+  <div class="section-header">
+    <span class="section-num">Topic 6</span>
+    <h2>Spinels and Inverse Spinels</h2>
+  </div>
+
+  <!-- Overview -->
+  <div class="card">
+    <h3>General Formula: AB₂X₄</h3>
+    <p>A = divalent cation (2+), B = trivalent cation (3+), X = anion (usually O²⁻). The oxide sublattice forms a <strong style="color:var(--accent2)">cubic close-packed (FCC) arrangement</strong> of O²⁻ ions. This creates two types of interstitial voids: <strong>8 tetrahedral (Td)</strong> sites and <strong>4 octahedral (Oh)</strong> sites per formula unit — but only some are occupied.</p>
+    <div style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap">
+      <span class="tag tag-green">Catalysts</span>
+      <span class="tag tag-green">Lithium-ion batteries</span>
+      <span class="tag tag-green">Ferromagnets</span>
+      <span class="tag tag-green">Pigments &amp; dyes</span>
+      <span class="tag tag-green">Ceramic magnets</span>
+      <span class="tag tag-green">Biomedical imaging (MRI)</span>
+    </div>
+  </div>
+
+  <!-- Crystal structure detail -->
+  <div class="card">
+    <h3>The Crystal Structure in Detail</h3>
+    <p>In the spinel unit cell (space group <em>Fd3̄m</em>), the oxide ions occupy the 32e positions of an FCC lattice. This generates:</p>
+    <ul style="margin:0.75rem 0 0 1rem;">
+      <li style="margin-bottom:0.4rem"><strong style="color:var(--accent3)">64 Td holes total</strong> — only 8 are occupied per unit cell (⅛ occupancy)</li>
+      <li style="margin-bottom:0.4rem"><strong style="color:var(--accent3)">32 Oh holes total</strong> — only 16 are occupied per unit cell (½ occupancy)</li>
+      <li><strong>Ratio of Oh : Td occupied = 2 : 1</strong> — this is why B appears twice in AB₂O₄</li>
+    </ul>
+    <div class="formula-box" style="margin-top:0.9rem">Unit cell: 8 × (AB₂O₄) = 8A in Td + 16B in Oh + 32O²⁻ (normal spinel)</div>
+  </div>
+
+  <!-- Site preference — CFSE argument -->
+  <div class="card">
+    <h3>Why Do Ions Choose Their Sites? — The CFSE Argument</h3>
+    <p>The key driver of normal vs. inverse structure is the <strong style="color:var(--accent2)">Crystal Field Stabilisation Energy (CFSE)</strong> gained by each ion in each site type. Recall:</p>
+    <div class="formula-box">CFSE (Oh) is always larger than CFSE (Td) by a factor of ≈ 4/9 for the same Δ</div>
+    <p style="margin-top:0.75rem">This means ions that gain large CFSE in an Oh field are <strong>strongly driven</strong> into Oh sites, sometimes forcing another ion into the "wrong" Td site — creating an inverse spinel.</p>
+    <div class="table-wrap" style="margin-top:0.85rem">
+      <table>
+        <thead>
+          <tr><th>Ion</th><th>Config</th><th>CFSE (Oh)</th><th>CFSE (Td)</th><th>Site Preference</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mn²⁺, Fe³⁺</td><td>d⁵ HS</td><td>0</td><td>0</td><td>No preference — indifferent</td></tr>
+          <tr><td>Zn²⁺, Cd²⁺</td><td>d¹⁰</td><td>0</td><td>0</td><td>Prefers Td (size/electrostatics)</td></tr>
+          <tr><td>Cr³⁺</td><td>d³</td><td>−1.2 Δo</td><td>−0.53 Δo</td><td>Strong Oh preference</td></tr>
+          <tr><td>Ni²⁺</td><td>d⁸</td><td>−1.2 Δo</td><td>−0.36 Δo</td><td>Very strong Oh preference</td></tr>
+          <tr class="highlight-row"><td>Co³⁺ (LS)</td><td>d⁶ LS</td><td>−2.4 Δo</td><td>−0.8 Δo</td><td>Extreme Oh preference</td></tr>
+          <tr><td>Fe²⁺</td><td>d⁶ HS</td><td>−0.4 Δo</td><td>−0.27 Δo</td><td>Moderate Oh preference</td></tr>
+          <tr><td>Co²⁺</td><td>d⁷ HS</td><td>−0.8 Δo</td><td>−0.27 Δo</td><td>Moderate Oh preference</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Normal vs Inverse side by side -->
+  <div class="grid-2">
+    <div class="card" style="border-color: rgba(110,207,176,0.3)">
+      <h3 style="color:var(--accent3)">Normal Spinel</h3>
+      <div class="formula-box">(A²⁺)<sub>tet</sub> [B³⁺₂]<sub>oct</sub> O₄</div>
+      <p style="margin-top:0.6rem;font-size:0.88rem">A²⁺ occupies <strong>Td</strong> sites. B³⁺ fills all <strong>Oh</strong> sites.</p>
+      <p style="margin-top:0.5rem;font-size:0.83rem;color:var(--muted)">Occurs when A²⁺ has no strong CFSE preference, or when B³⁺ has a larger CFSE in Oh (e.g., Cr³⁺, Co³⁺ LS).</p>
+      <p style="margin-top:0.6rem;font-size:0.8rem"><span style="color:var(--accent2)">Examples:</span> MnAl₂O₄, ZnFe₂O₄, FeCr₂O₄, Co₃O₄</p>
+    </div>
+    <div class="card" style="border-color: rgba(232,116,58,0.3)">
+      <h3 style="color:var(--accent)">Inverse Spinel</h3>
+      <div class="formula-box">(B³⁺)<sub>tet</sub> [A²⁺ B³⁺]<sub>oct</sub> O₄</div>
+      <p style="margin-top:0.6rem;font-size:0.88rem">Half the B³⁺ is pushed into <strong>Td</strong>. A²⁺ and the remaining B³⁺ share <strong>Oh</strong>.</p>
+      <p style="margin-top:0.5rem;font-size:0.83rem;color:var(--muted)">Occurs when A²⁺ has a strong preference for Oh, evicting B³⁺ into Td (B³⁺ is indifferent, like Fe³⁺ d⁵ HS).</p>
+      <p style="margin-top:0.6rem;font-size:0.8rem"><span style="color:var(--accent2)">Examples:</span> Fe₃O₄, NiFe₂O₄, CoFe₂O₄, MgFe₂O₄</p>
+    </div>
+  </div>
+
+  <!-- Inversion parameter -->
+  <div class="card">
+    <h3>The Inversion Parameter (λ)</h3>
+    <p>Real spinels often lie between fully normal and fully inverse. The <strong style="color:var(--accent2)">inversion parameter λ</strong> (0 ≤ λ ≤ 1) quantifies this:</p>
+    <div class="formula-box">
+      General: (A²⁺₁₋λ B³⁺λ)<sub>tet</sub> [A²⁺λ B³⁺₂₋λ]<sub>oct</sub> O₄<br>
+      λ = 0 → Normal spinel &nbsp;|&nbsp; λ = 1 → Fully Inverse spinel
+    </div>
+    <p style="margin-top:0.6rem;font-size:0.88rem">At <strong>high temperatures</strong>, cation disorder increases (λ → intermediate), because entropy favours random distribution. <strong>Quenching</strong> from high T can freeze in a disordered structure.</p>
+  </div>
+
+  <!-- How CFSE determines the outcome — step by step -->
+  <div class="card">
+    <h3>Step-by-Step: How to Determine Normal or Inverse</h3>
+    <ol style="padding-left:1.2rem;line-height:2">
+      <li>Identify the two cations and assign their d-electron counts.</li>
+      <li>Determine the spin state (high-spin in an oxide lattice unless strong-field ligand).</li>
+      <li>Look up or calculate CFSE for each ion in both Oh and Td sites.</li>
+      <li>The ion with the <strong style="color:var(--accent3)">larger CFSE difference (Oh − Td)</strong> wins the Oh site.</li>
+      <li>If B³⁺ is d⁵ high-spin (CFSE = 0 everywhere), A²⁺ always wins Oh → <strong>inverse spinel</strong>.</li>
+      <li>If B³⁺ is low-spin or a d³ ion with very large Oh preference, B³⁺ wins Oh → <strong>normal spinel</strong>.</li>
+    </ol>
+    <div class="formula-box" style="margin-top:0.85rem">Δ(CFSE) = CFSE(Oh) − CFSE(Td)  →  ion with largest Δ goes into Oh</div>
+  </div>
+
+  <!-- Worked examples — extended -->
+  <div class="card">
+    <h3>Worked Examples</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Compound</th><th>Ions Present</th><th>CFSE Analysis</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fe₃O₄</strong><br><span style="font-size:0.75rem;color:var(--muted)">Magnetite</span></td>
+            <td>Fe²⁺(d⁶ HS) + 2Fe³⁺(d⁵ HS)</td>
+            <td>Fe³⁺ CFSE = 0 everywhere (d⁵ HS); Fe²⁺ gains −0.4Δo in Oh vs −0.27Δo in Td → Fe²⁺ strongly prefers Oh</td>
+            <td><span class="tag tag-purple">Inverse</span><br>Fe³⁺[Fe²⁺Fe³⁺]O₄<br><span style="font-size:0.75rem;color:var(--muted)">Ferrimagnetic black solid</span></td>
+          </tr>
+          <tr>
+            <td><strong>NiFe₂O₄</strong><br><span style="font-size:0.75rem;color:var(--muted)">Nickel ferrite</span></td>
+            <td>Ni²⁺(d⁸) + 2Fe³⁺(d⁵ HS)</td>
+            <td>Fe³⁺ CFSE = 0; Ni²⁺ gains −1.2Δo in Oh vs −0.36Δo in Td → Ni²⁺ has large Δ(CFSE), wins Oh</td>
+            <td><span class="tag tag-purple">Inverse</span><br>Fe³⁺[Ni²⁺Fe³⁺]O₄<br><span style="font-size:0.75rem;color:var(--muted)">Used in transformer cores</span></td>
+          </tr>
+          <tr>
+            <td><strong>Co₃O₄</strong><br><span style="font-size:0.75rem;color:var(--muted)">Cobalt oxide</span></td>
+            <td>Co²⁺(d⁷ HS) + Co³⁺(d⁶ LS)</td>
+            <td>Co³⁺ LS gains −2.4Δo in Oh — overwhelmingly large; Co²⁺ is pushed to Td</td>
+            <td><span class="tag tag-green">Normal</span><br>Co²⁺[Co³⁺₂]O₄<br><span style="font-size:0.75rem;color:var(--muted)">Catalyst for CO oxidation</span></td>
+          </tr>
+          <tr>
+            <td><strong>ZnFe₂O₄</strong><br><span style="font-size:0.75rem;color:var(--muted)">Zinc ferrite</span></td>
+            <td>Zn²⁺(d¹⁰) + 2Fe³⁺(d⁵ HS)</td>
+            <td>Both Zn²⁺ and Fe³⁺ have CFSE = 0. Zn²⁺ prefers Td due to electronic config (d¹⁰ → no ligand field effect, smaller size fits Td)</td>
+            <td><span class="tag tag-green">Normal</span><br>Zn²⁺[Fe³⁺₂]O₄<br><span style="font-size:0.75rem;color:var(--muted)">Non-magnetic (diamagnetic)</span></td>
+          </tr>
+          <tr>
+            <td><strong>CoFe₂O₄</strong><br><span style="font-size:0.75rem;color:var(--muted)">Cobalt ferrite</span></td>
+            <td>Co²⁺(d⁷ HS) + 2Fe³⁺(d⁵ HS)</td>
+            <td>Fe³⁺ CFSE = 0; Co²⁺ gains −0.8Δo in Oh vs −0.27Δo in Td → Co²⁺ prefers Oh</td>
+            <td><span class="tag tag-purple">Inverse</span><br>Fe³⁺[Co²⁺Fe³⁺]O₄<br><span style="font-size:0.75rem;color:var(--muted)">Hard magnet, data storage</span></td>
+          </tr>
+          <tr>
+            <td><strong>FeCr₂O₄</strong><br><span style="font-size:0.75rem;color:var(--muted)">Iron chromite</span></td>
+            <td>Fe²⁺(d⁶ HS) + 2Cr³⁺(d³)</td>
+            <td>Cr³⁺ gains −1.2Δo in Oh (d³ is uniquely stable in Oh); despite Fe²⁺ also preferring Oh, Cr³⁺ wins due to larger Δ(CFSE)</td>
+            <td><span class="tag tag-green">Normal</span><br>Fe²⁺[Cr³⁺₂]O₄<br><span style="font-size:0.75rem;color:var(--muted)">Refractory mineral</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Magnetic consequences -->
+  <div class="card">
+    <h3>Magnetic Consequences of Spinel Structure</h3>
+    <p>The site occupancy directly controls the <strong style="color:var(--accent2)">magnetic behaviour</strong> of spinel oxides via <em>superexchange interactions</em> through the bridging O²⁻ ions:</p>
+    <ul style="margin:0.75rem 0 0 1rem;">
+      <li style="margin-bottom:0.5rem"><strong style="color:var(--accent3)">A–O–B superexchange</strong> (Td–O–Oh): spins on A and B tend to align <strong>antiparallel</strong> (antiferromagnetically). If A and B have different numbers of unpaired electrons, the moments don't fully cancel → <strong>ferrimagnetism</strong>.</li>
+      <li style="margin-bottom:0.5rem"><strong>Fe₃O₄</strong>: Fe³⁺ in Td (5 unpaired, up) is antiparallel to Fe³⁺ in Oh (5 unpaired, down) → cancel. Fe²⁺ in Oh (4 unpaired, up) is left uncompensated → net moment of 4 µB per formula unit → ferrimagnetic.</li>
+      <li style="margin-bottom:0.5rem"><strong>ZnFe₂O₄</strong> (normal): Zn²⁺ has no unpaired electrons in Td → the Fe³⁺–O–Fe³⁺ Oh–Oh superexchange dominates → antiferromagnetic, no net moment.</li>
+      <li><strong>NiFe₂O₄</strong> (inverse): Fe³⁺ Td and Fe³⁺ Oh cancel; Ni²⁺ Oh (2 unpaired) gives net moment of ~2 µB → ferrimagnetic, used in soft magnets.</li>
+    </ul>
+    <div class="formula-box" style="margin-top:0.85rem">Ferrimagnetism = antiparallel spin alignment with unequal moments → net ≠ 0</div>
+  </div>
+
+  <!-- Quick summary table -->
+  <div class="card">
+    <h3>Summary: Normal vs Inverse at a Glance</h3>
+    <div class="table-wrap">
+      <table class="summary-table">
+        <thead>
+          <tr><th>Feature</th><th>Normal Spinel</th><th>Inverse Spinel</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Formula notation</td><td>(A²⁺)<sub>tet</sub>[B³⁺₂]<sub>oct</sub> O₄</td><td>(B³⁺)<sub>tet</sub>[A²⁺B³⁺]<sub>oct</sub> O₄</td></tr>
+          <tr><td>A²⁺ site</td><td>Tetrahedral</td><td>Octahedral</td></tr>
+          <tr><td>B³⁺ site(s)</td><td>Both in octahedral</td><td>Half Td, half Oh</td></tr>
+          <tr><td>Driver</td><td>B³⁺ has large Oh CFSE <em>or</em> A²⁺ has no preference</td><td>A²⁺ has large Oh CFSE; B³⁺ is indifferent (d⁵ HS)</td></tr>
+          <tr><td>Key B³⁺ types</td><td>Cr³⁺(d³), Co³⁺ LS(d⁶), Al³⁺</td><td>Fe³⁺(d⁵ HS), Mn³⁺(d⁴ certain)</td></tr>
+          <tr><td>Key A²⁺ types</td><td>Zn²⁺(d¹⁰), Mn²⁺(d⁵)</td><td>Ni²⁺(d⁸), Co²⁺(d⁷), Fe²⁺(d⁶)</td></tr>
+          <tr><td>Magnetism</td><td>Often diamagnetic or AFM</td><td>Often ferrimagnetic</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LECTURE 4 DIVIDER ═══ -->
+<div class="lecture-divider">
+  <span>⟡ AM Slides Continue ⟡</span>
+</div>
+
+<!-- ═══ SECTION 6: Magnetism ═══ -->
+<section class="section" id="magnetism">
+  <div class="section-header">
+    <span class="section-num lecture4">Topic 7</span>
+    <h2>Introduction to Magnetism</h2>
+  </div>
+  <div class="card">
+    <h3>Origins of Magnetic Moment</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Source</th><th>Strength</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Nuclear spin</td><td>Very weak</td><td>µ ∝ charge/mass → heavy nucleus = tiny field</td></tr>
+          <tr><td>Orbital motion</td><td>Weak</td><td>Partially cancels in most complexes</td></tr>
+          <tr><td><strong style="color:var(--accent3)">Electron spin</strong></td><td><strong style="color:var(--accent3)">Dominant</strong></td><td>Unpaired electrons generate net magnetic moment</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Paramagnetism</h3>
+      <p>One or more unpaired electrons. Attracted to magnetic field. χ &gt; 0.</p>
+      <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--muted)">Examples: NO, O₂, [Mn(H₂O)₆]²⁺</p>
+    </div>
+    <div class="card">
+      <h3>Diamagnetism</h3>
+      <p>All electrons paired. Repelled by magnetic field. χ &lt; 0.</p>
+      <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--muted)">Examples: N₂, Cl₂, [Ni(CN)₄]²⁻</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 7: µ_eff ═══ -->
+<section class="section" id="mu-eff">
+  <div class="section-header">
+    <span class="section-num lecture4">Topic 8</span>
+    <h2>Magnetic Moment (µ) & µ_eff</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Spin-Only Formula</h3>
+      <div class="formula-box">µ<sub>so</sub> = √[n(n+2)] BM<br><br>n = number of unpaired electrons</div>
+    </div>
+    <div class="card">
+      <h3>With Orbital Contribution</h3>
+      <div class="formula-box">µ<sub>eff</sub> = √[L(L+1) + 4S(S+1)] BM<br><br>L = orbital, S = total spin QN</div>
+    </div>
+  </div>
+
+  <div class="tbbt-card">
+    <div class="tbbt-img-wrap" id="img-raj1">
+      <img src="" alt="Raj Koothrappali" id="raj1-img">
+      <span class="placeholder">🌌</span>
+    </div>
+    <div class="tbbt-content">
+      <div class="tbbt-speaker">Raj Koothrappali</div>
+      <div class="tbbt-quote">"Every time I measure magnetic susceptibility of a new complex, I feel like Faraday himself — if Faraday wore a nice sweater and had selective mutism around beautiful women."</div>
+    </div>
+  </div>
+
+  <!-- Magnetism illustration: spin-only formula visualized -->
+  <div style="margin:1rem 0;text-align:center">
+    <svg viewBox="0 0 460 120" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;width:100%;border-radius:10px;background:rgba(124,106,247,0.04);border:1px solid rgba(232,116,58,0.1)">
+      <text x="230" y="18" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(181,173,255,0.7)">µ_so = √[n(n+2)] BM — Spin-Only Magnetic Moment</text>
+      <!-- unpaired electrons row -->
+      <text x="20" y="45" font-family="monospace" font-size="8" fill="rgba(136,132,168,0.8)">n=</text>
+      <text x="36" y="45" font-family="monospace" font-size="8" fill="#b5adff">1</text>
+      <text x="36" y="65" text-anchor="middle" font-size="14">⬆️</text>
+      <text x="36" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(106,247,200,0.8)">1.73</text>
+
+      <text x="86" y="45" font-family="monospace" font-size="8" fill="#b5adff">2</text>
+      <text x="78" y="65" font-size="14">⬆️⬆️</text>
+      <text x="86" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(106,247,200,0.8)">2.83</text>
+
+      <text x="146" y="45" font-family="monospace" font-size="8" fill="#b5adff">3</text>
+      <text x="126" y="65" font-size="14">⬆️⬆️⬆️</text>
+      <text x="146" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(106,247,200,0.8)">3.87</text>
+
+      <text x="213" y="45" font-family="monospace" font-size="8" fill="#b5adff">4</text>
+      <text x="183" y="65" font-size="14">⬆️⬆️⬆️⬆️</text>
+      <text x="213" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(247,200,106,0.8)">4.90</text>
+
+      <text x="278" y="45" font-family="monospace" font-size="8" fill="var(--tbbt-yellow)">5 ★</text>
+      <text x="240" y="65" font-size="14">⬆️⬆️⬆️⬆️⬆️</text>
+      <text x="278" y="82" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(247,200,106,0.9)">5.92</text>
+
+      <!-- raj emoji + label -->
+      <text x="380" y="65" text-anchor="middle" font-size="28">🧥</text>
+      <text x="380" y="90" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(181,173,255,0.7)">"Like Faraday"</text>
+      <text x="380" y="102" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(181,173,255,0.5)">— Raj</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <h3>µ Values for Oh Complexes</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Ion (Oh)</th><th>Config</th><th>µ<sub>so</sub> (BM)</th><th>µ<sub>obs</sub> (BM)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ti(III)</td><td>d¹ t₂g¹</td><td>√3 = 1.73</td><td>1.6–1.7</td></tr>
+          <tr><td>V(III)</td><td>d² t₂g²</td><td>√8 = 2.83</td><td>2.7–2.9</td></tr>
+          <tr><td>Cr(III)</td><td>d³ t₂g³</td><td>√15 = 3.88</td><td>3.7–3.9</td></tr>
+          <tr><td>Mn(II)/Fe(III) HS</td><td>d⁵ t₂g³eg²</td><td>√35 = 5.92</td><td>5.6–6.1</td></tr>
+          <tr class="highlight-row"><td>Fe(II) HS</td><td>d⁶ t₂g⁴eg²</td><td>√24 = 4.90</td><td>5.1–5.7 *</td></tr>
+          <tr class="highlight-row"><td>Co(II) HS</td><td>d⁷ t₂g⁵eg²</td><td>√15 = 3.88</td><td>4.3–5.2 *</td></tr>
+          <tr><td>Co(III) LS</td><td>d⁶ t₂g⁶</td><td>0</td><td>0</td></tr>
+          <tr><td>Ni(II)</td><td>d⁸ t₂g⁶eg²</td><td>√8 = 2.83</td><td>2.9–3.3</td></tr>
+          <tr><td>Cu(II)</td><td>d⁹ t₂g⁶eg³</td><td>√3 = 1.73</td><td>1.7–2.2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem">* Significant orbital contribution: µ<sub>obs</sub> > µ<sub>so</sub></p>
+  </div>
+</section>
+
+<!-- ═══ SECTION 8: Ferromagnetic ═══ -->
+<section class="section" id="ferro">
+  <div class="section-header">
+    <span class="section-num lecture4">Topic 9</span>
+    <h2>Ferromagnetic & Antiferromagnetic Coupling</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Ferromagnetism</h3>
+      <p>Spins align <strong style="color:var(--accent3)">parallel</strong>. Net magnetic moment is strong. Exchange interaction favors parallel spins.</p>
+      <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--muted)">Examples: Fe metal, Mn-acetate (SMM)</p>
+    </div>
+    <div class="card">
+      <h3>Antiferromagnetism</h3>
+      <p>Spins align <strong style="color:#f48">antiparallel</strong>. Net moment is very low or zero. Superexchange via bridging ligands (O²⁻, Cl⁻).</p>
+      <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--muted)">Examples: Ni(II) acetate dimers</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 9: Colors ═══ -->
+<section class="section" id="colors">
+  <div class="section-header">
+    <span class="section-num lecture4">Topic 10</span>
+    <h2>Colors of Transition Metal Complexes</h2>
+  </div>
+  <div class="card">
+    <h3>Observed Color = White Light − Absorbed Color</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>λ Absorbed (nm)</th><th>Color Absorbed</th><th>Color Observed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>400</td><td style="color:#c0b0ff">Violet</td><td style="color:#d4e877">Yellow-green</td></tr>
+          <tr><td>450</td><td style="color:#a0a0ff">Blue</td><td style="color:#f7a060">Orange</td></tr>
+          <tr><td>490</td><td style="color:#60d0d0">Blue-green</td><td style="color:#f06060">Red</td></tr>
+          <tr><td>530</td><td style="color:#60c060">Green</td><td style="color:#c060c0">Purple</td></tr>
+          <tr><td>570</td><td style="color:#c0e060">Yellow-green</td><td style="color:#9060c0">Violet</td></tr>
+          <tr><td>580</td><td style="color:#f0f060">Yellow</td><td style="color:#205090">Dark blue</td></tr>
+          <tr><td>600</td><td style="color:#f0a060">Orange</td><td style="color:#6060c0">Blue</td></tr>
+          <tr><td>650</td><td style="color:#f06060">Red</td><td style="color:#60c0c0">Blue-green</td></tr>
+          <tr><td>720</td><td style="color:#c060a0">Purple</td><td style="color:#60c060">Green</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Types of Electronic Transitions</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Donor</th><th>Acceptor</th><th>ε (L mol⁻¹ cm⁻¹)</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>d–d</td><td>Metal d (lower)</td><td>Metal d (upper)</td><td>1–100 (weak)</td><td>[Ti(H₂O)₆]³⁺</td></tr>
+          <tr><td>LMCT</td><td>Ligand lone pair/π</td><td>Empty metal d</td><td>10³–10⁴ (strong)</td><td>MnO₄⁻</td></tr>
+          <tr><td>MLCT</td><td>Metal d (e-rich)</td><td>Ligand π*</td><td>10³–10⁴ (strong)</td><td>[Ru(bpy)₃]²⁺</td></tr>
+          <tr><td>IVCT</td><td>Metal(n)</td><td>Metal(m)</td><td>Strong</td><td>Prussian Blue</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 10: Selection Rules ═══ -->
+<section class="section" id="selection">
+  <div class="section-header">
+    <span class="section-num lecture4">Topic 11</span>
+    <h2>Selection Rules</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Laporte Rule (centrosymmetric)</h3>
+      <p>Only g ↔ u transitions are allowed. Δl = ±1 required.</p>
+      <div class="formula-box" style="margin-top:0.75rem;font-size:0.78rem">
+        s↔p, p↔d, d↔f → <span style="color:var(--accent3)">ALLOWED</span><br>
+        s↔s, p↔p, d↔d → <span style="color:#f48">FORBIDDEN</span>
+      </div>
+      <p style="margin-top:0.6rem;font-size:0.82rem;color:var(--muted)">d–d transitions in Oh are Laporte-forbidden → weak (ε ≈ 1–100)</p>
+    </div>
+    <div class="card">
+      <h3>Spin Selection Rule</h3>
+      <p>Total spin must not change during transition.</p>
+      <div class="formula-box" style="margin-top:0.75rem;font-size:0.78rem">
+        ΔS = 0 → <span style="color:var(--accent3)">ALLOWED</span><br>
+        ΔS ≠ 0 → <span style="color:#f48">FORBIDDEN</span>
+      </div>
+      <p style="margin-top:0.6rem;font-size:0.82rem;color:var(--muted)">[Mn(H₂O)₆]²⁺: all d-d spin-forbidden → pale pink</p>
+    </div>
+  </div>
+
+  <div class="tbbt-card">
+    <div class="tbbt-img-wrap" id="img-sheldon3">
+      <img src="" alt="Sheldon Cooper explaining" id="sheldon3-img">
+      <span class="placeholder">🚫</span>
+    </div>
+    <div class="tbbt-content">
+      <div class="tbbt-speaker">Sheldon Cooper</div>
+      <div class="tbbt-quote">"Calling spin-forbidden transitions 'forbidden' is misleading. They still occur — just weakly. Much like social norms forbid me from correcting strangers, yet I still do. <span class="bazinga">Bazinga!</span>"</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>How the Laporte Rule Gets Relaxed</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mechanism</th><th>Cause</th><th>When</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Vibronic coupling</td><td>Vibration breaks symmetry momentarily</td><td>All centrosymmetric complexes</td><td>[Cr(H₂O)₆]³⁺</td></tr>
+          <tr><td>d–p mixing</td><td>Metal d and ligand p mix in non-Oh field</td><td>Tetrahedral, distorted complexes</td><td>[CoCl₄]²⁻</td></tr>
+          <tr><td>Spin–orbit coupling</td><td>Spin couples with orbital motion</td><td>4d/5d metals; strongly paramagnetic</td><td>[Ru(bpy)₃]²⁺</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 11: Beer-Lambert ═══ -->
+<section class="section" id="beer">
+  <div class="section-header">
+    <span class="section-num lecture4">Topic 12</span>
+    <h2>Beer-Lambert Law & UV-Vis Spectroscopy</h2>
+  </div>
+  <div class="card">
+    <h3>Key Formulas</h3>
+    <div class="formula-box">
+      <strong>A = εCl</strong><br>
+      A = absorbance | ε = molar absorptivity (L mol⁻¹ cm⁻¹) | C = concentration | l = path length (cm)<br><br>
+      T = I/I₀ &nbsp;&nbsp; A = −log₁₀(T)
+    </div>
+  </div>
+
+  <div class="tbbt-card">
+    <div class="tbbt-img-wrap" id="img-amy1">
+      <img src="" alt="Amy Farrah Fowler" id="amy1-img">
+      <span class="placeholder">🧠</span>
+    </div>
+    <div class="tbbt-content">
+      <div class="tbbt-speaker">Amy Farrah Fowler</div>
+      <div class="tbbt-quote">"I apply the Beer-Lambert law in neuroscience for measuring haemoglobin absorption. Sheldon says this is 'derivative science'. I say he can find his own ride home."</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>ε Values and What They Tell You</h3>
+    <div class="table-wrap">
+      <table class="summary-table">
+        <thead>
+          <tr><th>Transition Type</th><th>ε (L mol⁻¹ cm⁻¹)</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Spin-forbidden + Laporte-forbidden</td><td>~0.1</td><td>[Mn(H₂O)₆]²⁺ — pale pink</td></tr>
+          <tr><td>Spin-allowed (Oh), Laporte-forbidden</td><td>1–10</td><td>[Co(H₂O)₆]²⁺ — pale pink/orange</td></tr>
+          <tr><td>Spin-allowed (Td), d-p mixing</td><td>50–150</td><td>[CoCl₄]²⁻ — intense blue</td></tr>
+          <tr class="highlight-row"><td>Charge transfer (LMCT/MLCT)</td><td>10³–10⁴</td><td>KMnO₄ — deep purple</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+
+</main>
+
+<div class="footer">
+  CHM113M — General Chemistry (Inorganic) · AM Slides<br>
+  Garvit Choudhary · "That's it. That's the lecture. You're welcome." — S. Cooper
+</div>
+
+<script>
+const TBBT_IMAGES = [
+  {
+    id: "sheldon1-img",
+    query: "Sheldon Cooper Big Bang Theory couch spot",
+    urls: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Jim_Parsons_2012.jpg/440px-Jim_Parsons_2012.jpg",
+      "https://m.media-amazon.com/images/M/MV5BMjI5NDA4MjQ4MV5BMl5BanBnXkFtZTgwOTc2MDc4NTE@._V1_.jpg"
+    ]
+  },
+  {
+    id: "leonard1-img",
+    query: "Leonard Hofstadter Big Bang Theory glasses",
+    urls: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Johnny_Galecki_2010.jpg/440px-Johnny_Galecki_2010.jpg"
+    ]
+  },
+  {
+    id: "sheldon2-img",
+    query: "Sheldon Cooper roommate agreement Big Bang Theory",
+    urls: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Jim_Parsons_2012.jpg/440px-Jim_Parsons_2012.jpg"
+    ]
+  },
+  {
+    id: "howard1-img",
+    query: "Howard Wolowitz Big Bang Theory astronaut",
+    urls: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Simon_Helberg_2012.jpg/440px-Simon_Helberg_2012.jpg"
+    ]
+  },
+  {
+    id: "raj1-img",
+    query: "Raj Koothrappali Big Bang Theory astrophysicist",
+    urls: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Kunal_Nayyar_2012.jpg/440px-Kunal_Nayyar_2012.jpg"
+    ]
+  },
+  {
+    id: "sheldon3-img",
+    query: "Sheldon Cooper explaining Big Bang Theory science",
+    urls: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Jim_Parsons_2012.jpg/440px-Jim_Parsons_2012.jpg"
+    ]
+  },
+  {
+    id: "amy1-img",
+    query: "Amy Farrah Fowler Big Bang Theory neuroscience",
+    urls: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Mayim_Bialik_2012.jpg/440px-Mayim_Bialik_2012.jpg"
+    ]
+  }
+];
+
+function loadImage(imgId, urls, idx) {
+  if (idx >= urls.length) return;
+  const img = document.getElementById(imgId);
+  if (!img) return;
+  img.onload = function() {
+    img.classList.add('loaded');
+  };
+  img.onerror = function() {
+    loadImage(imgId, urls, idx + 1);
+  };
+  img.src = urls[idx];
+}
+
+TBBT_IMAGES.forEach(item => {
+  loadImage(item.id, item.urls, 0);
+});
+
+document.querySelectorAll('.nav-pill').forEach(pill => {
+  pill.addEventListener('click', function() {
+    document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
